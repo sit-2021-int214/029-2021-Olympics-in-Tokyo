@@ -14,11 +14,10 @@ Datasets from: [Source](https://www.google.com)
 
 ### Team: nameXXXXXX
 
-1. นายอภิวรรธน์ อาทิตย์เที่ยง: 63130500130
-2. ชื่อ นามสกุล StudentID: 63130500xxx
-3. ชื่อ นามสกุล StudentID: 63130500xxx
-4. ชื่อ นามสกุล StudentID: 63130500xxx
-5. ชื่อ นามสกุล StudentID: 63130500xxx
+1. นายอภิวรรธน์ อาทิตย์เที่ยง         StudentID: 63130500130
+2. นางสาวชิชญา มารอด             StudentID: 63130500150
+3. นายโชคพูลทวี พูลชะโก            StudentID: 63130500151
+
 
 ### Instructor
 
