@@ -3,21 +3,41 @@ Explore 2 dataset that given then finding descriptive statistics and summary res
 
 ### Answer
 
-1.) From survey, most students use left hand writing.
+1.) หาน้ำหนักค่าเฉลี่ยของแมวตัวผู้ทั้งหมด
 ```{R}
-Code here
+mean(cats$Bwt[cats$Sex == 'M']) # 2.9
 ```
-
-2.) Descriptive statistics Statement
+2.) หาอายุสมาชิกที่อายุเยอะที่สุด
 ```{R}
-Code here
+max(survey$Age) #73
+```
+3.) หาจำนวนผู้ชายที่สูบบุหรี่
+```{R}
+length(survey$Smoke[survey$Sex == 'Male']) #119
+```
+4.) หาจำนวนคนที่อายุมากกว่าหรือเท่ากับ18 
+```{R}
+nrow(survey[survey$Age>=18]) #159
+```
+5.) หาค่าเฉลี่ยของอายุผู้ชายทั้งหมด
+```{R}
+Sex <- c("Male")
+MaleAge <- c(survey$Age[survey$Sex == 'Male'])
+X <- mean(MaleAge, na.rm = TRUE)
+Age <- c(X)
+table <- data.frame(Sex,Age)
+View(table) #20.33196
+
 ```
 
 
 ### Team: xxxxxxx
 
-1. เธเธทเนเธญ เธเธฒเธกเธชเธเธธเธฅ     StudentID: 63130500xxx
-2. เธเธทเนเธญ เธเธฒเธกเธชเธเธธเธฅ     StudentID: 63130500xxx
-3. เธเธทเนเธญ เธเธฒเธกเธชเธเธธเธฅ     StudentID: 63130500xxx
-4. เธเธทเนเธญ เธเธฒเธกเธชเธเธธเธฅ     StudentID: 63130500xxx
-5. เธเธทเนเธญ เธเธฒเธกเธชเธเธธเธฅ     StudentID: 63130500xxx
+1. นายอภิวรรธน์ อาทิตย์เที่ยง      StudentID: 63130500130
+2. นางสาวชิชญา มารอด         StudentID: 63130500150
+3. นายโชคพูลทวี พูลชะโก        StudentID: 63130500151
+
+
+
+
+
