@@ -13,7 +13,7 @@ max(survey$Age) #73
 ```
 3.) หาจำนวนผู้ชายที่สูบบุหรี่
 ```{R}
-length(survey$Smoke[survey$Sex == 'Male']) #118
+length(survey$Smoke[survey$Sex == 'Male' & survey$Smoke != 'Never']) #29
 ```
 4.) หาจำนวนคนที่อายุมากกว่าหรือเท่ากับ18 
 ```{R}
