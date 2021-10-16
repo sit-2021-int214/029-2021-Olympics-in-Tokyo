@@ -10,10 +10,10 @@ This dataset contains the details of the Athletes, Coaches, Teams participating 
 ## Overview
 
 ## Steps
-1.Search datasets from Kaggle
-2.Define a question
-3.Download library and dataset
-4.Explore the dataset
+1. Search datasets from Kaggle
+2. Define a question
+3. Download library and dataset
+4. Explore the dataset
 
 ## Tools
 - R Studio
