@@ -24,7 +24,7 @@ This dataset contains the details of the Athletes, Coaches, Teams participating 
 
 งานนี้เป็นส่วนของวิชา INT214 Statistics for Information technology <br/> ภาคเรียนที่ 1 ปีการศึกษา 2564 คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
 
-### Team: nameXXXXXX
+- ### Team: คิดไม่ออก
 
 1. นายอภิวรรธน์ อาทิตย์เที่ยง         StudentID: 63130500130
 2. นางสาวชิชญา มารอด             StudentID: 63130500150
