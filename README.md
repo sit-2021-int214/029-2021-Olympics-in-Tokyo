@@ -8,7 +8,7 @@ This dataset contains the details of the Athletes, Coaches, Teams participating 
 
 
 ## Overview
-
+กีฬาโอลิมปิกปี 2020 ที่จัดขึ้นที่โตเกียว ถูกเลื่อนขึ้นมาจัดในปีที่ 2021 เนื่องด้วยสถานการณ์ โควิด-19 ถึงอย่างนั้นก็นับเป็น 1 ในประวัติศาสตร์เนื่องด้วยความยิ่งใหญ่ และยังมีประเทศผู้เข้าร่วมไม่ต่างไปจากครั้งก่อนๆมากนัก
 ## Steps
 1. Search datasets from Kaggle
 2. Define a question
