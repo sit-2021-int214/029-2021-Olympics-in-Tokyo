@@ -1,6 +1,6 @@
 # 029-Olympics in Tokyo
 
-Datasets from: [Source](https://www.kaggle.com/arjunprasadsarkhel/2021-olympics-in-tokyo)
+Datasets from: [2021 Olympics in Tokyo](https://www.kaggle.com/arjunprasadsarkhel/2021-olympics-in-tokyo)
 
 ## What About's Products Datasets.
 This contains the details of over 11,000 athletes, with 47 disciplines, along with 743 Teams taking part in the 2021(2020) Tokyo Olympics.
