@@ -7,9 +7,13 @@ This contains the details of over 11,000 athletes, with 47 disciplines, along wi
 This dataset contains the details of the Athletes, Coaches, Teams participating as well as the Entries by gender. It contains their names, countries represented, discipline, gender of competitors, name of the coaches.
 
 
-## Process
+## Overview
 
-## Result
+## Steps
+
+## Tools
+
+## Table of Contents
 
 ## About Us
 
