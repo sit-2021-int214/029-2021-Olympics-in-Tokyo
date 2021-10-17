@@ -359,8 +359,6 @@ Teams$Discipline <- as.factor(Teams$Discipline)
 sport <- Teams %>% count(Discipline)
 sport %>% select(Discipline, n) %>% filter(n == max(n))
 
-country <- Athletes %>% count(country)
-country %>% select(country, n) %>% filter(n == max(n))
 ```
 
 ```
