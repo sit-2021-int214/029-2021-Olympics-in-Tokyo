@@ -355,8 +355,14 @@ as_tibble(swimmingTeam)
 
 2. กีฬาประเภทใดที่มีผู้เข้าแข่งขันมากที่สุด
 ```R
-Teams %>% select(Discipline) %>% filter(Teams$Discipline == max(Teams$Discipline)) %>% distinct()
+Teams$Discipline <- as.factor(Teams$Discipline)
+sport <- Teams %>% count(Discipline)
+sport %>% select(Discipline, n) %>% filter(n == max(n))
+
+country <- Athletes %>% count(country)
+country %>% select(country, n) %>% filter(n == max(n))
 ```
+
 ```
  Discipline     n
   <fct>      <int>
