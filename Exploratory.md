@@ -245,18 +245,38 @@ as_tibble(goldMedals)
 
 ## Dataset from [Teams](./csv/Teams.csv)
 
--Define a question
+Define a question
 1. กีฬาประเภท swimming มีประเทศใดส่งนักกีฬาเข้าร่วมบ้าง
 ```R
-
+swimmingTeam <- Teams %>% select(country, Discipline) %>% filter(Discipline == "Swimming") %>% distinct()
+as_tibble(swimmingTeam)
 ```
 ```
+   country                    Discipline
+   <chr>                      <chr>     
+ 1 Australia                  Swimming  
+ 2 Belarus                    Swimming  
+ 3 Brazil                     Swimming  
+ 4 Canada                     Swimming  
+ 5 People's Republic of China Swimming  
+ 6 Czech Republic             Swimming  
+ 7 Denmark                    Swimming  
+ 8 France                     Swimming  
+ 9 Germany                    Swimming  
+10 Great Britain              Swimming  
+# ... with 20 more rows
 
 ```
 2. กีฬาประเภทใดที่มีผู้เข้าแข่งขันมากที่สุด
 ```R
+sport <- Teams %>% count(Discipline)
+sport %>% select(Discipline, n) %>% filter(n == max(n))
 
 ```
+ 
 ```
+ Discipline     n
+  <fct>      <int>
+1 Swimming     113
 
 ```
