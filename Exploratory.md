@@ -2,6 +2,37 @@
 
 Dataset from [Olympics in Tokyo Dataset](./csv)
 
+## library
+```R
+library("dplyr")
+library("stringr")
+library("tidyr")
+library("assertive")
+library("readr")
+```
+
+## Read CSV
+- Read Athletes
+```R
+Athletes <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Athletes_clean.csv")
+```
+- Read Coaches
+```R
+Coaches <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Coaches_clean.csv")
+```
+- Read EntriesGender
+```R
+EntriesGender <- read.csv("https://github.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/blob/master/csv_clean/EntriesGender.csv")
+```
+- Read Medals
+```R
+Medals <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Medals_clean.csv")
+```
+- Read Teams
+```R
+Teams <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Teams_clean.csv")
+```
+
 
 ### My Step
 1. Define a question
@@ -14,7 +45,7 @@ Dataset from [Olympics in Tokyo Dataset](./csv)
 ## Dataset from [Athletes](./csv/Athletes.csv)
 
 Define a question
-1. ‡∏õ‡∏£‡∏∞‡πÄ‡∏ó‡∏®‡πÉ‡∏î‡∏™‡πà‡∏á‡∏ô‡∏±‡∏Å‡∏Å‡∏µ‡∏¨‡∏≤‡πÅ‡∏Ç‡πà‡∏á‡∏Ç‡∏±‡∏ô‡∏°‡∏≤‡∏Å‡∏ó‡∏µ‡πà‡∏™‡∏∏‡∏î ‡πÅ‡∏•‡∏∞‡∏°‡∏µ‡∏à‡∏≥‡∏ô‡∏ß‡∏ô‡πÄ‡∏ó‡πà‡∏≤‡πÉ‡∏î
+1. ª√–‡∑»„¥ Ëßπ—°°’Ã“·¢Ëß¢—π¡“°∑’Ë ÿ¥ ·≈–¡’®”π«π‡∑Ë“„¥
 ```R
 country <- Athletes %>% count(country)
 country %>% select(country, n) %>% filter(n == max(n))
@@ -24,18 +55,66 @@ country %>% select(country, n) %>% filter(n == max(n))
  United States of America  615
 
 ```
-2. ‡πÉ‡∏ô‡∏Å‡∏≤‡∏£‡πÅ‡∏Ç‡πà‡∏á‡∏Ç‡∏±‡∏ô Olympics in Tokyo 2020 ‡∏°‡∏µ‡∏Å‡∏µ‡∏¨‡∏≤‡∏õ‡∏£‡∏∞‡πÄ‡∏†‡∏ó‡∏≠‡∏∞‡πÑ‡∏£‡∏ö‡πâ‡∏≤‡∏á
+ª√–‡∑» United States of America ¡’ºŸÈ‡¢È“·¢Ëß¢—π¡“°∑’Ë ÿ¥ ¡’®”π«π 615
+
+2. „π°“√·¢Ëß¢—π Olympics in Tokyo 2020 ¡’°’Ã“ª√–‡¿∑Õ–‰√∫È“ß
 ```R
-
+sport <- Athletes%>%select(Discipline)%>%distinct()
 ```
 ```
-
+              Discipline
+1           Cycling Road
+2    Artistic Gymnastics
+3                 Rowing
+4             Basketball
+5               Handball
+6               Swimming
+7                 Karate
+8              Wrestling
+9    Rhythmic Gymnastics
+10     Baseball/Softball
+11             Athletics
+12     Artistic Swimming
+13                  Judo
+14              Shooting
+15          Table Tennis
+16              Football
+17             Taekwondo
+18               Fencing
+19             Badminton
+20                Boxing
+21         Weightlifting
+22               Archery
+23                Diving
+24      Beach Volleyball
+25               Sailing
+26                Hockey
+27 Trampoline Gymnastics
+28     Marathon Swimming
+29             Triathlon
+30          Canoe Slalom
+31            Water Polo
+32               Surfing
+33          Canoe Sprint
+34    Cycling BMX Racing
+35          Rugby Sevens
+36            Volleyball
+37            Equestrian
+38                Tennis
+39         Cycling Track
+40                  Golf
+41         Skateboarding
+42     Modern Pentathlon
+43 Cycling Mountain Bike
+44        3x3 Basketball
+45 Cycling BMX Freestyle
+46        Sport Climbing
 ```
 
 ## Dataset from [Coaches](./csv/Coaches.csv)
 
 Define a question
-1. ‡πÇ‡∏Ñ‡πâ‡∏ä‡∏Ñ‡∏ô‡πÉ‡∏î‡∏ö‡πâ‡∏≤‡∏á‡∏ó‡∏µ‡πà‡∏Ñ‡∏∏‡∏°‡∏Å‡∏µ‡∏¨‡∏≤‡∏õ‡∏£‡∏∞‡πÄ‡∏†‡∏ó‡∏´‡∏ç‡∏¥‡∏á‡∏•‡πâ‡∏ß‡∏ô ‡∏û‡∏£‡πâ‡∏≠‡∏°‡∏ö‡∏≠‡∏Å‡∏ä‡∏∑‡πà‡∏≠‡∏Å‡∏µ‡∏¨‡∏≤
+1. ‚§È™§π„¥∫È“ß∑’Ë§ÿ¡°’Ã“ª√–‡¿∑À≠‘ß≈È«π æ√ÈÕ¡∫Õ°™◊ËÕ°’Ã“
 ```R
 Coaches %>% select(Name, Discipline, Event) %>% filter(Event == "Women")
 ```
@@ -130,7 +209,7 @@ Coaches %>% select(Name, Discipline, Event) %>% filter(Event == "Women")
 87                       XU Limin   Basketball Women
 88                  ZONDI Nkuliso       Hockey Women
 ```
-2. ‡∏õ‡∏£‡∏∞‡πÄ‡∏ó‡∏®‡πÉ‡∏î‡∏ö‡πâ‡∏≤‡∏á‡∏ó‡∏µ‡πà‡∏™‡πà‡∏á‡∏Å‡∏≤‡∏£‡πÅ‡∏ö‡∏ö‡∏ó‡∏µ‡∏° ‡πÅ‡∏•‡∏∞‡∏°‡∏µ‡∏Å‡∏µ‡∏¨‡∏≤‡∏≠‡∏∞‡πÑ‡∏£‡∏ö‡πâ‡∏≤‡∏á
+2. ª√–‡∑»„¥∫È“ß∑’Ë Ëß°“√·∫∫∑’¡ ·≈–¡’°’Ã“Õ–‰√∫È“ß
 ```R
 Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team")
 
@@ -157,7 +236,7 @@ Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team")
 ## Dataset from [EntriesGender](./csv/EntriesGender.csv)
 
 Define a question
-1. ‡∏ô‡∏±‡∏Å‡∏Å‡∏µ‡∏¨‡∏≤‡πÄ‡∏û‡∏®‡πÉ‡∏î‡∏ñ‡∏π‡∏Å‡∏™‡πà‡∏á‡πÄ‡∏Ç‡πâ‡∏≤‡∏£‡πà‡∏ß‡∏°‡∏Å‡∏≤‡∏£‡πÅ‡∏Ç‡πà‡∏á‡∏Ç‡∏±‡∏ô‡∏°‡∏≤‡∏Å‡∏ó‡∏µ‡πà‡∏™‡∏∏‡∏î 
+1. π—°°’Ã“‡æ»„¥∂Ÿ° Ëß‡¢È“√Ë«¡°“√·¢Ëß¢—π¡“°∑’Ë ÿ¥
 ```R
 genderW <- EntriesGender$Female %>% sum()
 as_tibble(genderW)
@@ -182,9 +261,10 @@ genderW <- EntriesGender$Female %>% sum()
 [1] FALSE
 
 ```
-‡∏à‡∏≤‡∏Å‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏ó‡∏µ‡πà‡πÄ‡∏õ‡πá‡∏ôFalse‡πÅ‡∏™‡∏î‡∏á‡∏ß‡πà‡∏≤‡∏ô‡∏±‡∏Å‡∏Å‡∏µ‡∏¨‡∏≤‡πÄ‡∏û‡∏®‡∏ä‡∏≤‡∏¢‡∏°‡∏≤‡∏Å‡∏Å‡∏ß‡πà‡∏≤‡πÄ‡∏û‡∏®‡∏´‡∏ç‡∏¥‡∏á
+®“°§”µÕ∫∑’Ë‡ªÁπFalse· ¥ß«Ë“π—°°’Ã“‡æ»™“¬¡“°°«Ë“‡æ»À≠‘ß
 
-2. ‡∏ô‡∏±‡∏Å‡∏Å‡∏µ‡∏¨‡∏≤‡∏ó‡∏µ‡πà‡πÄ‡∏Ç‡πâ‡∏≤‡∏£‡πà‡∏ß‡∏°‡∏ó‡∏±‡πâ‡∏á‡∏´‡∏°‡∏î‡∏°‡∏µ‡∏Å‡∏µ‡πà‡∏Ñ‡∏ô
+
+2. π—°°’Ã“∑’Ë‡¢È“√Ë«¡∑—ÈßÀ¡¥¡’°’Ë§π
 ```R
 Total <- EntriesGender$Total %>% sum()
 as_tibble(Total)
@@ -195,43 +275,98 @@ value
   <int>
 1 11316
 ```
-‡∏à‡∏≤‡∏Å‡∏Ñ‡∏≥‡∏ï‡∏≠‡∏ö‡∏°‡∏µ‡∏ô‡∏±‡∏Å‡∏Å‡∏µ‡∏¨‡∏≤‡∏ó‡∏µ‡πà‡πÄ‡∏Ç‡πâ‡∏≤‡∏£‡πà‡∏ß‡∏°‡∏ó‡∏±‡πâ‡∏á‡∏´‡∏°‡∏î 11316 ‡∏Ñ‡∏ô
+®“°§”µÕ∫¡’π—°°’Ã“∑’Ë‡¢È“√Ë«¡∑—ÈßÀ¡¥ 11316 §π
+
 
 ## Dataset from [Medals](./csv/Medals.csv)
 
 Define a question
-1. ‡∏õ‡∏£‡∏∞‡πÄ‡∏ó‡∏®‡πÉ‡∏î‡∏ö‡πâ‡∏≤‡∏á‡∏ó‡∏µ‡πà‡πÑ‡∏î‡πâ‡πÄ‡∏´‡∏£‡∏µ‡∏¢‡∏ç‡πÉ‡∏ô‡∏Å‡∏≤‡∏£‡πÅ‡∏Ç‡πà‡∏á‡∏Ç‡∏±‡∏ô Olympics in Tokyo 2020 ‡πÄ‡∏û‡∏µ‡∏¢‡∏á‡πÄ‡∏´‡∏£‡∏µ‡∏¢‡∏ç‡πÄ‡∏î‡∏µ‡∏¢‡∏ß
+1. ª√–‡∑»„¥∫È“ß∑’Ë‰¥È‡À√’¬≠„π°“√·¢Ëß¢—π Olympics in Tokyo 2020 ‡æ’¬ß‡À√’¬≠‡¥’¬«
 ```R
-
-
+Medals %>% select(country) %>% filter(Medals$Total == 1)
 ```
 ```
-
+                country
+1               Bermuda
+2               Morocco
+3           Puerto Rico
+4               Bahrain
+5          Saudi Arabia
+6             Lithuania
+7       North Macedonia
+8               Namibia
+9          Turkmenistan
+10             Botswana
+11         Burkina Faso
+12        C?te d'Ivoire
+13                Ghana
+14              Grenada
+15               Kuwait
+16  Republic of Moldova
+17 Syrian Arab Republic
 
 ```
 
-2. ‡∏õ‡∏£‡∏∞‡πÄ‡∏ó‡∏®‡πÉ‡∏î‡∏ö‡πâ‡∏≤‡∏á‡∏ó‡∏µ‡πà‡∏™‡∏≤‡∏°‡∏≤‡∏£‡∏ñ‡∏Ñ‡∏£‡∏≠‡∏ö‡∏Ñ‡∏£‡∏≠‡∏á‡πÄ‡∏´‡∏£‡∏µ‡∏¢‡∏ç‡∏ó‡∏≠‡∏á‡πÑ‡∏î‡πâ 10 ‡πÄ‡∏´‡∏£‡∏µ‡∏¢‡∏ç
+2.ª√–‡∑»„¥∫È“ß∑’Ë “¡“√∂§√Õ∫§√Õß‡À√’¬≠∑Õß‰¥È 10 ‡À√’¬≠
 ```R
-
+Medals %>% select(country) %>% filter(Medals$Gold == 10)
 ```
 ```
-
+      country
+1 Netherlands
+2      France
+3     Germany
+4       Italy
 ```
 
 ## Dataset from [Teams](./csv/Teams.csv)
 
 -Define a question
-1. ‡∏Å‡∏µ‡∏¨‡∏≤‡∏õ‡∏£‡∏∞‡πÄ‡∏†‡∏ó swimming ‡∏°‡∏µ‡∏õ‡∏£‡∏∞‡πÄ‡∏ó‡∏®‡πÉ‡∏î‡∏™‡πà‡∏á‡∏ô‡∏±‡∏Å‡∏Å‡∏µ‡∏¨‡∏≤‡πÄ‡∏Ç‡πâ‡∏≤‡∏£‡πà‡∏ß‡∏°‡∏ö‡πâ‡∏≤‡∏á
+1. °’Ã“ª√–‡¿∑ swimming ¡’ª√–‡∑»„¥ Ëßπ—°°’Ã“‡¢È“√Ë«¡∫È“ß
 ```R
+Teams %>% select(country) %>% filter(Teams$Discipline == "Swimming")%>%distinct()
+```
+```
+                      country
+1                   Australia
+2                     Belarus
+3                      Brazil
+4                      Canada
+5  People's Republic of China
+6              Czech Republic
+7                     Denmark
+8                      France
+9                     Germany
+10              Great Britain
+11                     Greece
+12           Hong Kong, China
+13                    Hungary
+14                    Ireland
+15                     Israel
+16                      Italy
+17                      Japan
+18                  Lithuania
+19                Netherlands
+20                New Zealand
+21                     Poland
+22          Republic of Korea
+23                        ROC
+24                     Serbia
+25               South Africa
+26                      Spain
+27                     Sweden
+28                Switzerland
+29                     Turkey
+30   United States of America
+```
 
-```
-```
 
-```
-2. ‡∏Å‡∏µ‡∏¨‡∏≤‡∏õ‡∏£‡∏∞‡πÄ‡∏†‡∏ó‡πÉ‡∏î‡∏ó‡∏µ‡πà‡∏°‡∏µ‡∏ú‡∏π‡πâ‡πÄ‡∏Ç‡πâ‡∏≤‡πÅ‡∏Ç‡πà‡∏á‡∏Ç‡∏±‡∏ô‡∏°‡∏≤‡∏Å‡∏ó‡∏µ‡πà‡∏™‡∏∏‡∏î
+2. °’Ã“ª√–‡¿∑„¥∑’Ë¡’ºŸÈ‡¢È“·¢Ëß¢—π¡“°∑’Ë ÿ¥
 ```R
-
+Teams %>% select(Discipline) %>% filter(Teams$Discipline == max(Teams$Discipline)) %>% distinct()
 ```
 ```
-
+  Discipline
+1 Water Polo
 ```
+°’Ã“ Water Polo ¡’ºŸÈ‡¢È“·¢Ëß¢—π¡“°∑’Ë ÿ¥
