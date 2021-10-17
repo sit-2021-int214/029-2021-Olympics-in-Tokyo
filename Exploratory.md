@@ -283,40 +283,43 @@ value
 Define a question
 1. ประเทศใดบ้างที่ได้เหรียญในการแข่งขัน Olympics in Tokyo 2020 เพียงเหรียญเดียว
 ```R
-Medals %>% select(country) %>% filter(Medals$Total == 1)
+Medals1 <- Medals %>% select(country, Total) %>% filter(Total == 1)
+as_tibble(Medals1)
 ```
 ```
-                country
-1               Bermuda
-2               Morocco
-3           Puerto Rico
-4               Bahrain
-5          Saudi Arabia
-6             Lithuania
-7       North Macedonia
-8               Namibia
-9          Turkmenistan
-10             Botswana
-11         Burkina Faso
-12        C?te d'Ivoire
-13                Ghana
-14              Grenada
-15               Kuwait
-16  Republic of Moldova
-17 Syrian Arab Republic
-
+   country              Total
+   <chr>                <dbl>
+ 1 Bermuda                  1
+ 2 Morocco                  1
+ 3 Puerto Rico              1
+ 4 Bahrain                  1
+ 5 Saudi Arabia             1
+ 6 Lithuania                1
+ 7 North Macedonia          1
+ 8 Namibia                  1
+ 9 Turkmenistan             1
+10 Botswana                 1
+11 Burkina Faso             1
+12 C?te d'Ivoire            1
+13 Ghana                    1
+14 Grenada                  1
+15 Kuwait                   1
+16 Republic of Moldova      1
+17 Syrian Arab Republic     1
 ```
 
 2.ประเทศใดบ้างที่สามารถครอบครองเหรียญทองได้ 10 เหรียญ
 ```R
-Medals %>% select(country) %>% filter(Medals$Gold == 10)
+goldMedals <- Medals %>% select(country, Gold) %>% filter(Gold == 10)
+as_tibble(goldMedals)
 ```
 ```
-      country
-1 Netherlands
-2      France
-3     Germany
-4       Italy
+  country      Gold
+  <chr>       <dbl>
+1 Netherlands    10
+2 France         10
+3 Germany        10
+4 Italy          10
 ```
 
 ## Dataset from [Teams](./csv/Teams.csv)
@@ -324,49 +327,34 @@ Medals %>% select(country) %>% filter(Medals$Gold == 10)
 -Define a question
 1. กีฬาประเภท swimming มีประเทศใดส่งนักกีฬาเข้าร่วมบ้าง
 ```R
-Teams %>% select(country) %>% filter(Teams$Discipline == "Swimming")%>%distinct()
+swimmingTeam <- Teams %>% select(country, Discipline) %>% filter(Discipline == "Swimming") %>% distinct()
+as_tibble(swimmingTeam)
 ```
 ```
-                      country
-1                   Australia
-2                     Belarus
-3                      Brazil
-4                      Canada
-5  People's Republic of China
-6              Czech Republic
-7                     Denmark
-8                      France
-9                     Germany
-10              Great Britain
-11                     Greece
-12           Hong Kong, China
-13                    Hungary
-14                    Ireland
-15                     Israel
-16                      Italy
-17                      Japan
-18                  Lithuania
-19                Netherlands
-20                New Zealand
-21                     Poland
-22          Republic of Korea
-23                        ROC
-24                     Serbia
-25               South Africa
-26                      Spain
-27                     Sweden
-28                Switzerland
-29                     Turkey
-30   United States of America
-```
+   country                    Discipline
+   <chr>                      <chr>     
+ 1 Australia                  Swimming  
+ 2 Belarus                    Swimming  
+ 3 Brazil                     Swimming  
+ 4 Canada                     Swimming  
+ 5 People's Republic of China Swimming  
+ 6 Czech Republic             Swimming  
+ 7 Denmark                    Swimming  
+ 8 France                     Swimming  
+ 9 Germany                    Swimming  
+10 Great Britain              Swimming  
+# ... with 20 more rows
 
+```
 
 2. กีฬาประเภทใดที่มีผู้เข้าแข่งขันมากที่สุด
 ```R
 Teams %>% select(Discipline) %>% filter(Teams$Discipline == max(Teams$Discipline)) %>% distinct()
 ```
 ```
-  Discipline
-1 Water Polo
+ Discipline     n
+  <fct>      <int>
+1 Swimming     113
+
 ```
-กีฬา Water Polo มีผู้เข้าแข่งขันมากที่สุด
+กีฬา Water Polo มีผู้เข้าแข่งขันมากที่สุด จำนวน113
