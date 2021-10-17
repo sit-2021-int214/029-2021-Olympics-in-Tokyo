@@ -110,6 +110,7 @@ sport <- Athletes%>%select(Discipline)%>%distinct()
 45 Cycling BMX Freestyle
 46        Sport Climbing
 ```
+ใน Olympics in Tokyo 2020 มีกีฬาเช่น Cycling Road, Artistic Gymnastics, Rowing เป็นต้น
 
 ## Dataset from [Coaches](./csv/Coaches.csv)
 
@@ -209,29 +210,27 @@ Coaches %>% select(Name, Discipline, Event) %>% filter(Event == "Women")
 87                       XU Limin   Basketball Women
 88                  ZONDI Nkuliso       Hockey Women
 ```
+โค้ชที่คุมนักกีฬาหญิงเช่น ALEKSEEV Alexey กีฬา Football, ANDONOVSKI Vlatko กีฬา Football, ANNAN Alyson กีฬา Hockey เป็นต้น
+
 2. ประเทศใดบ้างที่ส่งการแบบทีม และมีกีฬาอะไรบ้าง
 ```R
-Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team")
+Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team") %>% distinct()
 
 ```
 ```
-                      country        Discipline Event
-1                       Egypt Artistic Swimming  Team
-2                      Greece Artistic Swimming  Team
-3                       Egypt Artistic Swimming  Team
-4                       Italy Artistic Swimming  Team
-5                       Spain Artistic Swimming  Team
-6                       Italy Artistic Swimming  Team
-7                         ROC Artistic Swimming  Team
-8                      Canada Artistic Swimming  Team
-9                     Ukraine Artistic Swimming  Team
-10                  Australia Artistic Swimming  Team
-11                      Spain Artistic Swimming  Team
-12                     Canada Artistic Swimming  Team
-13                     Greece Artistic Swimming  Team
-14 People's Republic of China Artistic Swimming  Team
+                     country        Discipline Event
+1                      Egypt Artistic Swimming  Team
+2                     Greece Artistic Swimming  Team
+3                      Italy Artistic Swimming  Team
+4                      Spain Artistic Swimming  Team
+5                        ROC Artistic Swimming  Team
+6                     Canada Artistic Swimming  Team
+7                    Ukraine Artistic Swimming  Team
+8                  Australia Artistic Swimming  Team
+9 People's Republic of China Artistic Swimming  Team
 
 ```
+ประเทศที่ส่งนักกีฬาเป็นทีมได้แก่  Egypt  Greece Italy Spain กีฬา Artistic Swimming เป็นต้น
 
 ## Dataset from [EntriesGender](./csv/EntriesGender.csv)
 
@@ -244,6 +243,7 @@ genderM <- EntriesGender$Male %>% sum()
 as_tibble(genderM)
 genderW > genderM
 ```
+นักกีฬาหญิงมากกว่านักกีฬาชาย
 ```
 genderW <- EntriesGender$Female %>% sum()
 > as_tibble(genderW)
@@ -307,6 +307,7 @@ as_tibble(Medals1)
 16 Republic of Moldova      1
 17 Syrian Arab Republic     1
 ```
+ประเทศที่ได้เพียง1เหรียญเช่น Bermuda,Morocco,Puerto Rico เป็นต้น
 
 2.ประเทศใดบ้างที่สามารถครอบครองเหรียญทองได้ 10 เหรียญ
 ```R
@@ -321,6 +322,7 @@ as_tibble(goldMedals)
 3 Germany        10
 4 Italy          10
 ```
+ประเทศที่ได้เหรียญทอง10เหรียญได้แก่ Netherlands France Germany Italy
 
 ## Dataset from [Teams](./csv/Teams.csv)
 
@@ -346,6 +348,7 @@ as_tibble(swimmingTeam)
 # ... with 20 more rows
 
 ```
+ประเทศที่ส่งนักกีฬาเข้าแข่งกีฬา Swimming ได้แก่ Australia,Belarus,Brazil,Canada,etc.
 
 2. กีฬาประเภทใดที่มีผู้เข้าแข่งขันมากที่สุด
 ```R
