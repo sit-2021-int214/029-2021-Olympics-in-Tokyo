@@ -59,8 +59,11 @@ country %>% select(country, n) %>% filter(n == max(n))
 
 2. ในการแข่งขัน Olympics in Tokyo 2020 มีกีฬาประเภทอะไรบ้าง
 ```R
-sport <- Athletes%>%select(Discipline)%>%distinct()
+Athletes$Discipline <- as.factor(Athletes$Discipline)
+Discipline <- Athletes$Discipline %>% distinct()
+as_tibble(Discipline)
 ```
+
 ```
               Discipline
 1           Cycling Road
