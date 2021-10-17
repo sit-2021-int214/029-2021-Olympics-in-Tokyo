@@ -14,23 +14,23 @@ library("readr")
 ## Read CSV
 - Read Athletes
 ```R
-Athletes <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Athletes_clean.csv")
+Athletes <- read_csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Athletes_clean.csv")
 ```
 - Read Coaches
 ```R
-Coaches <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Coaches_clean.csv")
+Coaches <- read_csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Coaches_clean.csv")
 ```
 - Read EntriesGender
 ```R
-EntriesGender <- read.csv("https://github.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/blob/master/csv_clean/EntriesGender.csv")
+EntriesGender <- read_csv("https://github.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/blob/master/csv_clean/EntriesGender.csv")
 ```
 - Read Medals
 ```R
-Medals <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Medals_clean.csv")
+Medals <- read_csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Medals_clean.csv")
 ```
 - Read Teams
 ```R
-Teams <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Teams_clean.csv")
+Teams <- read_csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Teams_clean.csv")
 ```
 
 
@@ -47,6 +47,7 @@ Teams <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Ol
 Define a question
 1. ประเทศใดส่งนักกีฬาแข่งขันมากที่สุด และมีจำนวนเท่าใด
 ```R
+Athletes$country <- as.factor(Athletes$country)
 country <- Athletes %>% count(country)
 country %>% select(country, n) %>% filter(n == max(n))
 ```
