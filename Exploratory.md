@@ -45,7 +45,7 @@ Teams <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Ol
 ## Dataset from [Athletes](./csv/Athletes.csv)
 
 Define a question
-1. �������觹ѡ�����觢ѹ�ҡ����ش ����ըӹǹ����
+1. ประเทศใดส่งนักกีฬาแข่งขันมากที่สุด และมีจำนวนเท่าใด
 ```R
 country <- Athletes %>% count(country)
 country %>% select(country, n) %>% filter(n == max(n))
@@ -55,9 +55,9 @@ country %>% select(country, n) %>% filter(n == max(n))
  United States of America  615
 
 ```
-����� United States of America �ռ������觢ѹ�ҡ����ش �ըӹǹ 615
+ประเทศ United States of America มีผู้เข้าแข่งขันมากที่สุด มีจำนวน 615
 
-2. 㹡���觢ѹ Olympics in Tokyo 2020 �ա��һ��������ú�ҧ
+2. ในการแข่งขัน Olympics in Tokyo 2020 มีกีฬาประเภทอะไรบ้าง
 ```R
 sport <- Athletes%>%select(Discipline)%>%distinct()
 ```
@@ -114,7 +114,7 @@ sport <- Athletes%>%select(Discipline)%>%distinct()
 ## Dataset from [Coaches](./csv/Coaches.csv)
 
 Define a question
-1. �骤�㴺�ҧ��������һ�����˭ԧ��ǹ ������͡���͡���
+1. โค้ชคนใดบ้างที่คุมกีฬาประเภทหญิงล้วน พร้อมบอกชื่อกีฬา
 ```R
 Coaches %>% select(Name, Discipline, Event) %>% filter(Event == "Women")
 ```
@@ -209,7 +209,7 @@ Coaches %>% select(Name, Discipline, Event) %>% filter(Event == "Women")
 87                       XU Limin   Basketball Women
 88                  ZONDI Nkuliso       Hockey Women
 ```
-2. �����㴺�ҧ����觡��Ẻ��� ����ա������ú�ҧ
+2. ประเทศใดบ้างที่ส่งการแบบทีม และมีกีฬาอะไรบ้าง
 ```R
 Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team")
 
@@ -236,7 +236,7 @@ Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team")
 ## Dataset from [EntriesGender](./csv/EntriesGender.csv)
 
 Define a question
-1. �ѡ������㴶١�������������觢ѹ�ҡ����ش
+1. นักกีฬาเพศใดถูกส่งเข้าร่วมการแข่งขันมากที่สุด
 ```R
 genderW <- EntriesGender$Female %>% sum()
 as_tibble(genderW)
@@ -261,10 +261,10 @@ genderW <- EntriesGender$Female %>% sum()
 [1] FALSE
 
 ```
-�ҡ�ӵͺ�����False�ʴ���ҹѡ�����Ȫ���ҡ������˭ԧ
+จากคำตอบที่เป็นFalseแสดงว่านักกีฬาเพศชายมากกว่าเพศหญิง
 
 
-2. �ѡ���ҷ����������������ա�褹
+2. นักกีฬาที่เข้าร่วมทั้งหมดมีกี่คน
 ```R
 Total <- EntriesGender$Total %>% sum()
 as_tibble(Total)
@@ -275,13 +275,13 @@ value
   <int>
 1 11316
 ```
-�ҡ�ӵͺ�չѡ���ҷ��������������� 11316 ��
+จากคำตอบมีนักกีฬาที่เข้าร่วมทั้งหมด 11316 คน
 
 
 ## Dataset from [Medals](./csv/Medals.csv)
 
 Define a question
-1. �����㴺�ҧ���������­㹡���觢ѹ Olympics in Tokyo 2020 ��§����­����
+1. ประเทศใดบ้างที่ได้เหรียญในการแข่งขัน Olympics in Tokyo 2020 เพียงเหรียญเดียว
 ```R
 Medals1 <- Medals %>% select(country, Total) %>% filter(Total == 1)
 as_tibble(Medals1)
@@ -308,7 +308,7 @@ as_tibble(Medals1)
 17 Syrian Arab Republic     1
 ```
 
-2.�����㴺�ҧ�������ö��ͺ��ͧ����­�ͧ�� 10 ����­
+2.ประเทศใดบ้างที่สามารถครอบครองเหรียญทองได้ 10 เหรียญ
 ```R
 goldMedals <- Medals %>% select(country, Gold) %>% filter(Gold == 10)
 as_tibble(goldMedals)
@@ -325,7 +325,7 @@ as_tibble(goldMedals)
 ## Dataset from [Teams](./csv/Teams.csv)
 
 -Define a question
-1. ���һ����� swimming �ջ������觹ѡ�������������ҧ
+1. กีฬาประเภท swimming มีประเทศใดส่งนักกีฬาเข้าร่วมบ้าง
 ```R
 swimmingTeam <- Teams %>% select(country, Discipline) %>% filter(Discipline == "Swimming") %>% distinct()
 as_tibble(swimmingTeam)
@@ -347,7 +347,7 @@ as_tibble(swimmingTeam)
 
 ```
 
-2. ���һ�����㴷���ռ������觢ѹ�ҡ����ش
+2. กีฬาประเภทใดที่มีผู้เข้าแข่งขันมากที่สุด
 ```R
 Teams %>% select(Discipline) %>% filter(Teams$Discipline == max(Teams$Discipline)) %>% distinct()
 ```
@@ -357,4 +357,4 @@ Teams %>% select(Discipline) %>% filter(Teams$Discipline == max(Teams$Discipline
 1 Swimming     113
 
 ```
-���� Water Polo �ռ������觢ѹ�ҡ����ش �ӹǹ113
+กีฬา Water Polo มีผู้เข้าแข่งขันมากที่สุด จำนวน113
