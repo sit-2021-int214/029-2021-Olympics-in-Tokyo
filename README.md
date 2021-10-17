@@ -23,6 +23,8 @@ This dataset contains the details of the Athletes, Coaches, Teams participating 
 - R Studio Desktop
 
 ## Table of Contents
+1. [Exploratory](./Exploratory.md)
+2. 
 
 ## About Us
 
