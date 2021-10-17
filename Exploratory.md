@@ -202,20 +202,45 @@ value
 Define a question
 1. ประเทศใดบ้างที่ได้เหรียญในการแข่งขัน Olympics in Tokyo 2020 เพียงเหรียญเดียว
 ```R
-
+Medals1 <- Medals %>% select(country, Total) %>% filter(Total == 1)
+as_tibble(Medals1)
 
 ```
 ```
-
+   country              Total
+   <chr>                <dbl>
+ 1 Bermuda                  1
+ 2 Morocco                  1
+ 3 Puerto Rico              1
+ 4 Bahrain                  1
+ 5 Saudi Arabia             1
+ 6 Lithuania                1
+ 7 North Macedonia          1
+ 8 Namibia                  1
+ 9 Turkmenistan             1
+10 Botswana                 1
+11 Burkina Faso             1
+12 C?te d'Ivoire            1
+13 Ghana                    1
+14 Grenada                  1
+15 Kuwait                   1
+16 Republic of Moldova      1
+17 Syrian Arab Republic     1
 
 ```
 
 2. ประเทศใดบ้างที่สามารถครอบครองเหรียญทองได้ 10 เหรียญ
 ```R
-
+goldMedals <- Medals %>% select(country, Gold) %>% filter(Gold == 10)
+as_tibble(goldMedals)
 ```
 ```
-
+  country      Gold
+  <chr>       <dbl>
+1 Netherlands    10
+2 France         10
+3 Germany        10
+4 Italy          10
 ```
 
 ## Dataset from [Teams](./csv/Teams.csv)
