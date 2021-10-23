@@ -14,23 +14,23 @@ library("readr")
 ## Read CSV
 - Read Athletes
 ```R
-Athletes <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Athletes_clean.csv")
+Athletes <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/Athletes.csv")
 ```
 - Read Coaches
 ```R
-Coaches <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Coaches_clean.csv")
+Coaches <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/Coaches.csv")
 ```
 - Read EntriesGender
 ```R
-EntriesGender <- read.csv("https://github.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/blob/master/csv_clean/EntriesGender.csv")
+EntriesGender <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/EntriesGender.csv")
 ```
 - Read Medals
 ```R
-Medals <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Medals_clean.csv")
+Medals <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/Medals.csv")
 ```
 - Read Teams
 ```R
-Teams <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv_clean/Teams_clean.csv")
+Teams <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/Teams.csv")
 ```
 
 
@@ -41,6 +41,49 @@ Teams <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Ol
 4. Explore the dataset from the original dataset
 5. Cleaning Dataset
 6. Exploratory Data Analysis
+
+### cleannig
+```R
+Athletes %>% duplicated() %>% sum()
+Athletes <- Athletes%>% distinct()
+Athletes <- Athletes%>% rename(country=NOC)
+is.character(Athletes$Name)
+is.character(Athletes$country)
+is.character(Athletes$Discipline)
+
+Coaches %>% duplicated() %>% sum()
+Coaches <- Coaches%>% distinct()
+Coaches <- Coaches%>% rename(country=NOC)
+is.character(Coaches$Name)
+is.character(Coaches$country)
+is.character(Coaches$Discipline)
+is.character(Coaches$Event)
+
+EntriesGender %>% duplicated() %>% sum()
+EntriesGender <- EntriesGender%>% distinct()
+is.character(EntriesGender$Discipline)
+is.numeric(EntriesGender$Female)
+is.numeric(EntriesGender$Male)
+is.numeric(EntriesGender$Total)
+
+Medals %>% duplicated() %>% sum()
+Medals <- Medals%>% rename(country=Team.NOC)
+is.numeric(Medals$Rank)
+is.character(Medals$country)
+is.numeric(Medals$Gold)
+is.numeric(Medals$Silver)
+is.numeric(Medals$Bronze)
+is.numeric(Medals$Total)
+is.numeric(Medals$Rank.By.Total)
+Medals$Rank.By.Total <- as.numeric(Medals$Rank.By.Total)
+
+Teams %>% duplicated() %>% sum()
+Teams <- Teams%>% rename(country=NOC)
+is.character(Teams$Name)
+is.character(Teams$Discipline)
+is.character(Teams$country)
+is.character(Teams$Event)
+```
 
 ## Dataset from [Athletes](./csv/Athletes.csv)
 
@@ -59,7 +102,8 @@ country %>% select(country, n) %>% filter(n == max(n))
 
 2. ในการแข่งขัน Olympics in Tokyo 2020 มีกีฬาประเภทอะไรบ้าง
 ```R
-sport <- Athletes%>%select(Discipline)%>%distinct()
+Athletes%>%select(Discipline)%>%distinct()
+
 ```
 ```
               Discipline
@@ -211,25 +255,20 @@ Coaches %>% select(Name, Discipline, Event) %>% filter(Event == "Women")
 ```
 2. ประเทศใดบ้างที่ส่งการแบบทีม และมีกีฬาอะไรบ้าง
 ```R
-Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team")
+Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team") %>% distinct()
 
 ```
 ```
-                      country        Discipline Event
-1                       Egypt Artistic Swimming  Team
-2                      Greece Artistic Swimming  Team
-3                       Egypt Artistic Swimming  Team
-4                       Italy Artistic Swimming  Team
-5                       Spain Artistic Swimming  Team
-6                       Italy Artistic Swimming  Team
-7                         ROC Artistic Swimming  Team
-8                      Canada Artistic Swimming  Team
-9                     Ukraine Artistic Swimming  Team
-10                  Australia Artistic Swimming  Team
-11                      Spain Artistic Swimming  Team
-12                     Canada Artistic Swimming  Team
-13                     Greece Artistic Swimming  Team
-14 People's Republic of China Artistic Swimming  Team
+                     country        Discipline Event
+1                      Egypt Artistic Swimming  Team
+2                     Greece Artistic Swimming  Team
+3                      Italy Artistic Swimming  Team
+4                      Spain Artistic Swimming  Team
+5                        ROC Artistic Swimming  Team
+6                     Canada Artistic Swimming  Team
+7                    Ukraine Artistic Swimming  Team
+8                  Australia Artistic Swimming  Team
+9 People's Republic of China Artistic Swimming  Team
 
 ```
 
@@ -349,7 +388,9 @@ as_tibble(swimmingTeam)
 
 2. กีฬาประเภทใดที่มีผู้เข้าแข่งขันมากที่สุด
 ```R
-Teams %>% select(Discipline) %>% filter(Teams$Discipline == max(Teams$Discipline)) %>% distinct()
+Teams$Discipline <- as.factor(Teams$Discipline)
+sport <- Teams %>% count(Discipline)
+sport %>% select(Discipline, n) %>% filter(n == max(n))
 ```
 ```
  Discipline     n
