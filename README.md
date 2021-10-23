@@ -25,6 +25,7 @@ This dataset contains the details of the Athletes, Coaches, Teams participating 
 ## Table of Contents
 1. [Exploratory](./Exploratory.md)
 2. [Originals Dataset](./csv)
+3. [Clean Dataset](./csv_clean)
 
 ## About Us
 
