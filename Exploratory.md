@@ -90,6 +90,7 @@ is.character(Teams$Event)
 Define a question
 1. ประเทศใดส่งนักกีฬาแข่งขันมากที่สุด และมีจำนวนเท่าใด
 ```R
+Athletes$country <- as.factor(Athletes$country)
 country <- Athletes %>% count(country)
 country %>% select(country, n) %>% filter(n == max(n))
 ```
@@ -103,8 +104,8 @@ country %>% select(country, n) %>% filter(n == max(n))
 2. ในการแข่งขัน Olympics in Tokyo 2020 มีกีฬาประเภทอะไรบ้าง
 ```R
 Athletes%>%select(Discipline)%>%distinct()
-
 ```
+
 ```
               Discipline
 1           Cycling Road
@@ -154,6 +155,7 @@ Athletes%>%select(Discipline)%>%distinct()
 45 Cycling BMX Freestyle
 46        Sport Climbing
 ```
+ใน Olympics in Tokyo 2020 มีกีฬาเช่น Cycling Road, Artistic Gymnastics, Rowing เป็นต้น
 
 ## Dataset from [Coaches](./csv/Coaches.csv)
 
@@ -253,6 +255,8 @@ Coaches %>% select(Name, Discipline, Event) %>% filter(Event == "Women")
 87                       XU Limin   Basketball Women
 88                  ZONDI Nkuliso       Hockey Women
 ```
+โค้ชที่คุมนักกีฬาหญิงเช่น ALEKSEEV Alexey กีฬา Football, ANDONOVSKI Vlatko กีฬา Football, ANNAN Alyson กีฬา Hockey เป็นต้น
+
 2. ประเทศใดบ้างที่ส่งการแบบทีม และมีกีฬาอะไรบ้าง
 ```R
 Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team") %>% distinct()
@@ -271,6 +275,7 @@ Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team") %>% d
 9 People's Republic of China Artistic Swimming  Team
 
 ```
+ประเทศที่ส่งนักกีฬาเป็นทีมได้แก่ Egypt Greece Italy Spain กีฬา Artistic Swimming เป็นต้น
 
 ## Dataset from [EntriesGender](./csv/EntriesGender.csv)
 
@@ -283,6 +288,7 @@ genderM <- EntriesGender$Male %>% sum()
 as_tibble(genderM)
 genderW > genderM
 ```
+นักกีฬาหญิงมากกว่านักกีฬาชาย
 ```
 genderW <- EntriesGender$Female %>% sum()
 > as_tibble(genderW)
@@ -302,7 +308,6 @@ genderW <- EntriesGender$Female %>% sum()
 ```
 จากคำตอบที่เป็นFalseแสดงว่านักกีฬาเพศชายมากกว่าเพศหญิง
 
-
 2. นักกีฬาที่เข้าร่วมทั้งหมดมีกี่คน
 ```R
 Total <- EntriesGender$Total %>% sum()
@@ -315,7 +320,6 @@ value
 1 11316
 ```
 จากคำตอบมีนักกีฬาที่เข้าร่วมทั้งหมด 11316 คน
-
 
 ## Dataset from [Medals](./csv/Medals.csv)
 
@@ -346,8 +350,9 @@ as_tibble(Medals1)
 16 Republic of Moldova      1
 17 Syrian Arab Republic     1
 ```
+ประเทศที่ได้เพียง1เหรียญเช่น Bermuda,Morocco,Puerto Rico เป็นต้น
 
-2.ประเทศใดบ้างที่สามารถครอบครองเหรียญทองได้ 10 เหรียญ
+2.2.ประเทศใดบ้างที่สามารถครอบครองเหรียญทองได้ 10 เหรียญ
 ```R
 goldMedals <- Medals %>% select(country, Gold) %>% filter(Gold == 10)
 as_tibble(goldMedals)
@@ -360,10 +365,11 @@ as_tibble(goldMedals)
 3 Germany        10
 4 Italy          10
 ```
+ประเทศที่ได้เหรียญทอง10เหรียญได้แก่ Netherlands France Germany Italy
 
 ## Dataset from [Teams](./csv/Teams.csv)
 
--Define a question
+Define a question
 1. กีฬาประเภท swimming มีประเทศใดส่งนักกีฬาเข้าร่วมบ้าง
 ```R
 swimmingTeam <- Teams %>% select(country, Discipline) %>% filter(Discipline == "Swimming") %>% distinct()
@@ -385,6 +391,7 @@ as_tibble(swimmingTeam)
 # ... with 20 more rows
 
 ```
+ประเทศที่ส่งนักกีฬาเข้าแข่งกีฬา Swimming ได้แก่ Australia,Belarus,Brazil,Canada,etc.
 
 2. กีฬาประเภทใดที่มีผู้เข้าแข่งขันมากที่สุด
 ```R
@@ -392,6 +399,7 @@ Teams$Discipline <- as.factor(Teams$Discipline)
 sport <- Teams %>% count(Discipline)
 sport %>% select(Discipline, n) %>% filter(n == max(n))
 ```
+
 ```
  Discipline     n
   <fct>      <int>
