@@ -26,7 +26,7 @@ country %>% select(country, n) %>% filter(n == max(n))
 ```
 2. ในการแข่งขัน Olympics in Tokyo 2020 มีกีฬาประเภทอะไรบ้าง
 ```R
-
+Athletes%>%select(Discipline)%>%distinct()
 ```
 ```
 
