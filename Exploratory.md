@@ -2,6 +2,37 @@
 
 Dataset from [Olympics in Tokyo Dataset](./csv)
 
+## library
+```R
+library("dplyr")
+library("stringr")
+library("tidyr")
+library("assertive")
+library("readr")
+```
+
+## Read CSV
+- Read Athletes
+```R
+Athletes <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/Athletes.csv")
+```
+- Read Coaches
+```R
+Coaches <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/Coaches.csv")
+```
+- Read EntriesGender
+```R
+EntriesGender <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/EntriesGender.csv")
+```
+- Read Medals
+```R
+Medals <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/Medals.csv")
+```
+- Read Teams
+```R
+Teams <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/029-2021-Olympics-in-Tokyo/master/csv/Teams.csv")
+```
+
 
 ### My Step
 1. Define a question
@@ -11,11 +42,55 @@ Dataset from [Olympics in Tokyo Dataset](./csv)
 5. Cleaning Dataset
 6. Exploratory Data Analysis
 
+### cleannig
+```R
+Athletes %>% duplicated() %>% sum()
+Athletes <- Athletes%>% distinct()
+Athletes <- Athletes%>% rename(country=NOC)
+is.character(Athletes$Name)
+is.character(Athletes$country)
+is.character(Athletes$Discipline)
+
+Coaches %>% duplicated() %>% sum()
+Coaches <- Coaches%>% distinct()
+Coaches <- Coaches%>% rename(country=NOC)
+is.character(Coaches$Name)
+is.character(Coaches$country)
+is.character(Coaches$Discipline)
+is.character(Coaches$Event)
+
+EntriesGender %>% duplicated() %>% sum()
+EntriesGender <- EntriesGender%>% distinct()
+is.character(EntriesGender$Discipline)
+is.numeric(EntriesGender$Female)
+is.numeric(EntriesGender$Male)
+is.numeric(EntriesGender$Total)
+
+Medals %>% duplicated() %>% sum()
+Medals <- Medals%>% rename(country=Team.NOC)
+is.numeric(Medals$Rank)
+is.character(Medals$country)
+is.numeric(Medals$Gold)
+is.numeric(Medals$Silver)
+is.numeric(Medals$Bronze)
+is.numeric(Medals$Total)
+is.numeric(Medals$Rank.By.Total)
+Medals$Rank.By.Total <- as.numeric(Medals$Rank.By.Total)
+
+Teams %>% duplicated() %>% sum()
+Teams <- Teams%>% rename(country=NOC)
+is.character(Teams$Name)
+is.character(Teams$Discipline)
+is.character(Teams$country)
+is.character(Teams$Event)
+```
+
 ## Dataset from [Athletes](./csv/Athletes.csv)
 
 Define a question
 1. ประเทศใดส่งนักกีฬาแข่งขันมากที่สุด และมีจำนวนเท่าใด
 ```R
+Athletes$country <- as.factor(Athletes$country)
 country <- Athletes %>% count(country)
 country %>% select(country, n) %>% filter(n == max(n))
 ```
@@ -24,13 +99,67 @@ country %>% select(country, n) %>% filter(n == max(n))
  United States of America  615
 
 ```
+ประเทศ United States of America มีผู้เข้าแข่งขันมากที่สุด มีจำนวน 615
+
 2. ในการแข่งขัน Olympics in Tokyo 2020 มีกีฬาประเภทอะไรบ้าง
 ```R
 Athletes%>%select(Discipline)%>%distinct()
+<<<<<<< HEAD
 ```
+=======
+>>>>>>> a4fab0fb730df216a8d312a6437031ffd34653bf
 ```
 
 ```
+              Discipline
+1           Cycling Road
+2    Artistic Gymnastics
+3                 Rowing
+4             Basketball
+5               Handball
+6               Swimming
+7                 Karate
+8              Wrestling
+9    Rhythmic Gymnastics
+10     Baseball/Softball
+11             Athletics
+12     Artistic Swimming
+13                  Judo
+14              Shooting
+15          Table Tennis
+16              Football
+17             Taekwondo
+18               Fencing
+19             Badminton
+20                Boxing
+21         Weightlifting
+22               Archery
+23                Diving
+24      Beach Volleyball
+25               Sailing
+26                Hockey
+27 Trampoline Gymnastics
+28     Marathon Swimming
+29             Triathlon
+30          Canoe Slalom
+31            Water Polo
+32               Surfing
+33          Canoe Sprint
+34    Cycling BMX Racing
+35          Rugby Sevens
+36            Volleyball
+37            Equestrian
+38                Tennis
+39         Cycling Track
+40                  Golf
+41         Skateboarding
+42     Modern Pentathlon
+43 Cycling Mountain Bike
+44        3x3 Basketball
+45 Cycling BMX Freestyle
+46        Sport Climbing
+```
+ใน Olympics in Tokyo 2020 มีกีฬาเช่น Cycling Road, Artistic Gymnastics, Rowing เป็นต้น
 
 ## Dataset from [Coaches](./csv/Coaches.csv)
 
@@ -130,34 +259,32 @@ Coaches %>% select(Name, Discipline, Event) %>% filter(Event == "Women")
 87                       XU Limin   Basketball Women
 88                  ZONDI Nkuliso       Hockey Women
 ```
+โค้ชที่คุมนักกีฬาหญิงเช่น ALEKSEEV Alexey กีฬา Football, ANDONOVSKI Vlatko กีฬา Football, ANNAN Alyson กีฬา Hockey เป็นต้น
+
 2. ประเทศใดบ้างที่ส่งการแบบทีม และมีกีฬาอะไรบ้าง
 ```R
-Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team")
+Coaches %>% select(country, Discipline, Event) %>% filter(Event == "Team") %>% distinct()
 
 ```
 ```
-                      country        Discipline Event
-1                       Egypt Artistic Swimming  Team
-2                      Greece Artistic Swimming  Team
-3                       Egypt Artistic Swimming  Team
-4                       Italy Artistic Swimming  Team
-5                       Spain Artistic Swimming  Team
-6                       Italy Artistic Swimming  Team
-7                         ROC Artistic Swimming  Team
-8                      Canada Artistic Swimming  Team
-9                     Ukraine Artistic Swimming  Team
-10                  Australia Artistic Swimming  Team
-11                      Spain Artistic Swimming  Team
-12                     Canada Artistic Swimming  Team
-13                     Greece Artistic Swimming  Team
-14 People's Republic of China Artistic Swimming  Team
+                     country        Discipline Event
+1                      Egypt Artistic Swimming  Team
+2                     Greece Artistic Swimming  Team
+3                      Italy Artistic Swimming  Team
+4                      Spain Artistic Swimming  Team
+5                        ROC Artistic Swimming  Team
+6                     Canada Artistic Swimming  Team
+7                    Ukraine Artistic Swimming  Team
+8                  Australia Artistic Swimming  Team
+9 People's Republic of China Artistic Swimming  Team
 
 ```
+ประเทศที่ส่งนักกีฬาเป็นทีมได้แก่ Egypt Greece Italy Spain กีฬา Artistic Swimming เป็นต้น
 
 ## Dataset from [EntriesGender](./csv/EntriesGender.csv)
 
 Define a question
-1. นักกีฬาเพศใดถูกส่งเข้าร่วมการแข่งขันมากที่สุด 
+1. นักกีฬาเพศใดถูกส่งเข้าร่วมการแข่งขันมากที่สุด
 ```R
 genderW <- EntriesGender$Female %>% sum()
 as_tibble(genderW)
@@ -165,6 +292,7 @@ genderM <- EntriesGender$Male %>% sum()
 as_tibble(genderM)
 genderW > genderM
 ```
+นักกีฬาหญิงมากกว่านักกีฬาชาย
 ```
 genderW <- EntriesGender$Female %>% sum()
 > as_tibble(genderW)
@@ -204,7 +332,6 @@ Define a question
 ```R
 Medals1 <- Medals %>% select(country, Total) %>% filter(Total == 1)
 as_tibble(Medals1)
-
 ```
 ```
    country              Total
@@ -226,10 +353,10 @@ as_tibble(Medals1)
 15 Kuwait                   1
 16 Republic of Moldova      1
 17 Syrian Arab Republic     1
-
 ```
+ประเทศที่ได้เพียง1เหรียญเช่น Bermuda,Morocco,Puerto Rico เป็นต้น
 
-2. ประเทศใดบ้างที่สามารถครอบครองเหรียญทองได้ 10 เหรียญ
+2.2.ประเทศใดบ้างที่สามารถครอบครองเหรียญทองได้ 10 เหรียญ
 ```R
 goldMedals <- Medals %>% select(country, Gold) %>% filter(Gold == 10)
 as_tibble(goldMedals)
@@ -242,6 +369,7 @@ as_tibble(goldMedals)
 3 Germany        10
 4 Italy          10
 ```
+ประเทศที่ได้เหรียญทอง10เหรียญได้แก่ Netherlands France Germany Italy
 
 ## Dataset from [Teams](./csv/Teams.csv)
 
@@ -267,16 +395,19 @@ as_tibble(swimmingTeam)
 # ... with 20 more rows
 
 ```
+ประเทศที่ส่งนักกีฬาเข้าแข่งกีฬา Swimming ได้แก่ Australia,Belarus,Brazil,Canada,etc.
+
 2. กีฬาประเภทใดที่มีผู้เข้าแข่งขันมากที่สุด
 ```R
+Teams$Discipline <- as.factor(Teams$Discipline)
 sport <- Teams %>% count(Discipline)
 sport %>% select(Discipline, n) %>% filter(n == max(n))
-
 ```
- 
+
 ```
  Discipline     n
   <fct>      <int>
 1 Swimming     113
 
 ```
+กีฬา Water Polo มีผู้เข้าแข่งขันมากที่สุด จำนวน113
