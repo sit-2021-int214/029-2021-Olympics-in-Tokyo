@@ -26,7 +26,10 @@ This dataset contains the details of the Athletes, Coaches, Teams participating 
 1. [Exploratory](./Exploratory.md)
 2. [Originals Dataset](./csv)
 3. [Clean Dataset](./csv_clean)
-
+### Final
+1. [DataVisualization](./DataVisualization/DataVisualization.md)
+2. [Analytical Inferential Statistics.md](./DataVisualization/Analytical-Inferential-Statistics.md)
+3. [Analytical Inferential Statistics](./DataVisualization/Analytical-Inferential-Statistics.R)
 ## About Us
 
 งานนี้เป็นส่วนของวิชา INT214 Statistics for Information technology <br/> ภาคเรียนที่ 1 ปีการศึกษา 2564 คณะเทคโนโลยีสารสนเทศ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
